@@ -822,7 +822,7 @@ return {
 
 									self:safeAnimate(enemy, curAnim, false, 3)
 
-									health = health + 1
+									health = health - 1
 									success = true
 								end
 							else
