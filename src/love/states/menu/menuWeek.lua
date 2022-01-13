@@ -129,7 +129,7 @@ return {
 
 					storyMode = true
 
-					Gamestate.switch(weekData[weekNum], songNum, songAppend)
+					Gamestate.switch(normalWeekData[weekNum], songNum, songAppend)
 
 					status.setLoading(false)
 				end

@@ -36,24 +36,27 @@ function love.load()
 	settings = require "settings"
 	input = require "input"
 
-	-- Load states
-	clickStart = require "states.click-start"
-	debugMenu = require "states.debug-menu"
-	menu = require "states.menu"
-	menuWeek = require "states.menuWeek"
-	menuSelect = require "states.menuSelect"
-	menuFreeplay = require "states.menuFreeplay"
-	menuModFreeplay = require "states.modFreeplay"
-	menuSelectFreeplay = require "states.chooseFreeplay"
-	weeks = require "states.weeks"
-	weeksPixel = require "states.weeks-pixel"
+	-- Web
+	clickStart = require "states.web.click-start"
+	-- Debug
+	debugMenu = require "states.debug.debug-menu"
+	-- Menus
+	menu = require "states.menu.menu"
+	menuWeek = require "states.menu.menuWeek"
+	menuSelect = require "states.menu.menuSelect"
+	menuFreeplay = require "states.menu.menuFreeplay"
+	menuSelectFreeplay = require "states.menu.chooseFreeplay"
+	menuModFreeplay = require "states.menu.modFreeplay"
+	-- Weeks
+	weeks = require "states.weeks.weeks"
+	weeksPixel = require "states.weeks.weeks-pixel"
 
 	-- Load substates
 	gameOver = require "substates.game-over"
 	gameOverPixel = require "substates.game-over-pixel"
 
 	-- Load week data
-	weekData = {
+	normalWeekData = {
 		require "normalWeeks.tutorial",
 		require "normalWeeks.week1",
 		require "normalWeeks.week2",
