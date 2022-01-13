@@ -652,10 +652,6 @@ return {
 			enemyArrow:update(dt)
 			boyfriendArrow:update(dt)
 
-			if not enemyArrow:isAnimated() then
-				enemyArrow:animate("off", false)
-			end
-
 			if #enemyNote > 0 then
 				if (not settings.downscroll and enemyNote[1].y - musicPos < -75) or (settings.downscroll and enemyNote[1].y - musicPos > 75) then
 					if inst then voices:setVolume(0) end
@@ -969,7 +965,7 @@ return {
 					graphics.setColor(1, 1, 1)
 				love.graphics.pop()
 			end
-			
+
 			if settings.downscroll then
 				graphics.setColor(1, 0, 0)
 				love.graphics.rectangle("fill", -60, -55, 120, 5)
