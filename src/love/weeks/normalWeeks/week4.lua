@@ -80,12 +80,12 @@ return {
 		if player2 == "boyfriend" then
 			enemy = love.filesystem.load("sprites/week4/enemy/boyfriend.lua")()
 		end
-
 		if player1 == "boyfriend" then
 			boyfriend = love.filesystem.load("sprites/week4/boyfriend.lua")()
 		elseif player1 == "mommy-mearest" then
 			boyfriend = love.filesystem.load("sprites/week4/boyfriend/mommy-mearest.lua")()
 		end
+		-- Will find a way to optimise this later
 		if player2 == "pico" then
 			enemy.sizeX = -1 -- Reverse, reverse!
 			enemy.x, enemy.y = -380, 110
