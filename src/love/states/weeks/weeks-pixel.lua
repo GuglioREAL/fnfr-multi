@@ -115,6 +115,7 @@ return {
 		events = {}
 		enemyNotes = {}
 		boyfriendNotes = {}
+		health = 50
 		score = 0
 		score2 = 0
 
@@ -662,6 +663,7 @@ return {
 					notMissed[noteNum] = false
 
 					table.remove(enemyNote, 1)
+					health = health + 2
 
 				end
 			end
@@ -673,6 +675,7 @@ return {
 					notMissed[noteNum] = false
 
 					table.remove(boyfriendNote, 1)
+					health = health - 2
 
 				end
 			end
@@ -739,6 +742,7 @@ return {
 									boyfriendArrow:animate("confirm", false)
 
 									self:safeAnimate(boyfriend, curAnim, false, 3)
+									health = health + 1
 
 
 									success = true
@@ -755,6 +759,7 @@ return {
 
 					notMissed[noteNum] = false
 					score = score - 10
+					health = health - 2
 
 				end
 			end
@@ -821,7 +826,7 @@ return {
 
 									self:safeAnimate(enemy, curAnim, false, 3)
 
-
+									health = health + 1
 									success = true
 								end
 							else
@@ -836,6 +841,7 @@ return {
 
 					notMissed[noteNum] = false
 					score2 = score2 - 10
+					health = health + 2
 				end
 			end
 
@@ -849,6 +855,7 @@ return {
 						boyfriendArrow:animate("confirm", false)
 
 						self:safeAnimate(boyfriend, curAnim, true, 3)
+						health = health + 1
 
 					end
 				end
@@ -867,6 +874,7 @@ return {
 						enemyArrow:animate("confirm", false)
 
 						self:safeAnimate(enemy, curAnim, true, 3)
+						health = health - 1
 
 					end
 				end
@@ -876,6 +884,13 @@ return {
 				enemyArrow:animate("off", false)
 			end
 		end
+		if health > 100 then
+			health = 100
+		elseif health <= 0 then -- Game over
+			health = 0
+		end
+		enemyIcon.x = 50 - health * 1.2
+		boyfriendIcon.x = 70 - health * 1.2
 
 		if musicThres ~= oldMusicThres and math.fmod(absMusicTime, 60000 / bpm) < 100 then
 			if enemyIconTimer then Timer.cancel(enemyIconTimer) end
@@ -954,6 +969,31 @@ return {
 					graphics.setColor(1, 1, 1)
 				love.graphics.pop()
 			end
+			
+			if settings.downscroll then
+				graphics.setColor(1, 0, 0)
+				love.graphics.rectangle("fill", -60, -55, 120, 5)
+				graphics.setColor(0, 1, 0)
+				love.graphics.rectangle("fill", 60, -55, math.floor(-health * 1.2), 5)
+				graphics.setColor(0, 0, 0)
+				love.graphics.setLineWidth(2)
+				love.graphics.rectangle("line", -60, -55, 120, 5)
+				love.graphics.setLineWidth(1)
+				graphics.setColor(1, 1, 1)
+			else
+				graphics.setColor(1, 0, 0)
+				love.graphics.rectangle("fill", -60, 45, 120, 5)
+				graphics.setColor(0, 1, 0)
+				love.graphics.rectangle("fill", 60, 45, math.floor(-health * 1.2), 5)
+				graphics.setColor(0, 0, 0)
+				love.graphics.setLineWidth(2)
+				love.graphics.rectangle("line", -60, 45, 120, 5)
+				love.graphics.setLineWidth(1)
+				graphics.setColor(1, 1, 1)
+			end
+
+			boyfriendIcon:draw()
+			enemyIcon:draw()
 
 			if settings.downscroll then
 				love.graphics.print("Enemy Score: " .. score2 .. "       Boyfriend Score: " .. score, -125, -50)
