@@ -41,7 +41,8 @@ return {
 		boyfriend.x, boyfriend.y = 260, 100
 		enemy = girlfriend
 
-		enemyicon:animate("girlfriend", false)
+		enemyIcon:animate("girlfriend", false)
+		boyfriendIcon:animate("boyfriend", false)
 		self:load()
 	end,
 
@@ -143,10 +144,12 @@ return {
 				spriteTimers[i] = spriteTimer - 1
 			end
 		end
-
+		
 		if musicThres ~= oldMusicThres and (musicThres == 185 or musicThres == 280) then
 			weeks:safeAnimate(girlfriend, "cheer", false, 1)
-			weeks:safeAnimate(boyfriend, "hey", false, 3)
+			if player1 == "boyfriend" then
+				weeks:safeAnimate(boyfriend, "hey", false, 3)
+			end
 		end
 
 		if not (countingDown or graphics.isFading()) and not voices:isPlaying() then
