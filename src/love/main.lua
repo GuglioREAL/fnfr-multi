@@ -57,18 +57,18 @@ function love.load()
 
 	-- Load week data
 	normalWeekData = {
-		require "normalWeeks.tutorial",
-		require "normalWeeks.week1",
-		require "normalWeeks.week2",
-		require "normalWeeks.week3",
-		require "normalWeeks.week4",
-		require "normalWeeks.week5",
-		require "normalWeeks.week6"
+		require "weeks.normalWeeks.tutorial",
+		require "weeks.snormalWeeks.week1",
+		require "weeks.normalWeeks.week2",
+		require "weeks.normalWeeks.week3",
+		require "weeks.normalWeeks.week4",
+		require "weeks.normalWeeks.week5",
+		require "weeks.normalWeeks.week6"
 	}
 	modWeekData = {
-		require "modWeeks.garcello",
-		require "modWeeks.ddto",
-		require "modWeeks.kapi"
+		require "weeks.modWeeks.garcello",
+		require "weeks.modWeeks.ddto",
+		require "weeks.modWeeks.kapi"
 	}
 
 	-- LÖVE init
