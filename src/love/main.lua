@@ -58,7 +58,7 @@ function love.load()
 	-- Load week data
 	normalWeekData = {
 		require "weeks.normalWeeks.tutorial",
-		require "weeks.snormalWeeks.week1",
+		require "weeks.normalWeeks.week1",
 		require "weeks.normalWeeks.week2",
 		require "weeks.normalWeeks.week3",
 		require "weeks.normalWeeks.week4",

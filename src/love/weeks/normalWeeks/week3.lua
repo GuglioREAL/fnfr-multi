@@ -91,7 +91,6 @@ return {
 			boyfriend.sizeX = -1
 		end
 
-		enemyIcon:animate("pico", false)
 
 		self:load()
 	end,
@@ -102,12 +101,18 @@ return {
 		if song == 3 then
 			inst = love.audio.newSource("music/normal/week3/blammed-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week3/blammed-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		elseif song == 2 then
 			inst = love.audio.newSource("music/normal/week3/philly-nice-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week3/philly-nice-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		else
 			inst = love.audio.newSource("music/normal/week3/pico-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week3/pico-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		end
 
 		self:initUI()
@@ -139,12 +144,12 @@ return {
 		end
 
 		if health >= 80 then
-			if enemyIcon:getAnimName() == "pico" then
-				enemyIcon:animate("pico losing", false)
+			if enemyIcon:getAnimName() == player2 then
+				enemyIcon:animate(player2 .. " losing", false)
 			end
 		else
-			if enemyIcon:getAnimName() == "pico losing" then
-				enemyIcon:animate("pico", false)
+			if enemyIcon:getAnimName() == player2 .. " losing" then
+				enemyIcon:animate(player2, false)
 			end
 		end
 

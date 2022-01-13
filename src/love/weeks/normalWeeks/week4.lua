@@ -150,8 +150,6 @@ return {
 		countdownFade = {}
 		countdown = love.filesystem.load("sprites/countdown.lua")()
 
-		enemyIcon:animate("mommy mearest", false)
-
 		self:load()
 	end,
 
@@ -161,12 +159,18 @@ return {
 		if song == 3 then
 			inst = love.audio.newSource("music/normal/week4/milf-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week4/milf-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		elseif song == 2 then
 			inst = love.audio.newSource("music/normal/week4/high-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week4/high-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		else
 			inst = love.audio.newSource("music/normal/week4/satin-panties-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week4/satin-panties-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		end
 
 		self:initUI()
@@ -195,6 +199,15 @@ return {
 
 			camScaleTimer = Timer.tween((60 / bpm) / 16, cam, {sizeX = camScale.x * 1.05, sizeY = camScale.y * 1.05}, "out-quad", function() camScaleTimer = Timer.tween((60 / bpm), cam, {sizeX = camScale.x, sizeY = camScale.y}, "out-quad") end)
 		end
+		if health >= 80 then
+			if enemyIcon:getAnimName() == player2 then
+				enemyIcon:animate(player2 .. " losing", false)
+			end
+		else
+			if enemyIcon:getAnimName() == player2 .. " losing" then
+				enemyIcon:animate(player2, false)
+			end
+		end
 
 		bgLimo:update(dt)
 		limoDancer:update(dt)
@@ -204,16 +217,6 @@ return {
 			limoDancer:animate("anim", false)
 
 			limoDancer:setAnimSpeed(14.4 / (60 / bpm))
-		end
-
-		if health >= 80 then
-			if enemyIcon:getAnimName() == "mommy mearest" then
-				enemyIcon:animate("mommy mearest losing", false)
-			end
-		else
-			if enemyIcon:getAnimName() == "mommy mearest losing" then
-				enemyIcon:animate("mommy mearest", false)
-			end
 		end
 
 		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then

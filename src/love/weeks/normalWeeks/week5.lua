@@ -164,8 +164,6 @@ return {
 		countdownFade = {}
 		countdown = love.filesystem.load("sprites/countdown.lua")()
 
-		enemyIcon:animate("dearest duo", false)
-
 		self:load()
 	end,
 
@@ -198,16 +196,20 @@ return {
 
 			enemy.x, enemy.y = -780, 420
 
-			enemyIcon:animate("monster", false)
-
 			inst = love.audio.newSource("music/normal/week5/winter-horrorland-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week5/winter-horrorland-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		elseif song == 2 then
 			inst = love.audio.newSource("music/normal/week5/eggnog-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week5/eggnog-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		else
 			inst = love.audio.newSource("music/normal/week5/cocoa-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week5/cocoa-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		end
 
 		self:initUI()
@@ -257,26 +259,13 @@ return {
 					santa:animate("anim", false)
 				end
 			end
-
-			if song == 3 then
-				if health >= 80 then
-					if enemyIcon:getAnimName() == "monster" then
-						enemyIcon:animate("monster losing", false)
-					end
-				else
-					if enemyIcon:getAnimName() == "monster losing" then
-						enemyIcon:animate("monster", false)
-					end
+			if health >= 80 then
+				if enemyIcon:getAnimName() == player2 then
+					enemyIcon:animate(player2 .. " losing", false)
 				end
 			else
-				if health >= 80 then
-					if enemyIcon:getAnimName() == "dearest duo" then
-						enemyIcon:animate("dearest duo losing", false)
-					end
-				else
-					if enemyIcon:getAnimName() == "dearest duo losing" then
-						enemyIcon:animate("dearest duo", false)
-					end
+				if enemyIcon:getAnimName() == player2 .. " losing" then
+					enemyIcon:animate(player2, false)
 				end
 			end
 
@@ -401,6 +390,31 @@ return {
 						graphics.setColor(1, 1, 1)
 					love.graphics.pop()
 				end
+
+				if settings.downscroll then
+					graphics.setColor(1, 0, 0)
+					love.graphics.rectangle("fill", -500, -400, 1000, 25)
+					graphics.setColor(0, 1, 0)
+					love.graphics.rectangle("fill", 500, -400, -health * 10, 25)
+					graphics.setColor(0, 0, 0)
+					love.graphics.setLineWidth(10)
+					love.graphics.rectangle("line", -500, -400, 1000, 25)
+					love.graphics.setLineWidth(1)
+					graphics.setColor(1, 1, 1)
+				else
+					graphics.setColor(1, 0, 0)
+					love.graphics.rectangle("fill", -500, 350, 1000, 25)
+					graphics.setColor(0, 1, 0)
+					love.graphics.rectangle("fill", 500, 350, -health * 10, 25)
+					graphics.setColor(0, 0, 0)
+					love.graphics.setLineWidth(10)
+					love.graphics.rectangle("line", -500, 350, 1000, 25)
+					love.graphics.setLineWidth(1)
+					graphics.setColor(1, 1, 1)
+				end
+	
+				boyfriendIcon:draw()
+				enemyIcon:draw()
 
 				if settings.downscroll then
 					graphics.setColor(0, 0, 0)

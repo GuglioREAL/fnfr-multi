@@ -75,8 +75,6 @@ return {
 			boyfriend.sizeX = -1
 		end
 
-		enemyIcon:animate("daddy dearest", false)
-
 		self:load()
 	end,
 
@@ -86,12 +84,18 @@ return {
 		if song == 3 then
 			inst = love.audio.newSource("music/normal/week1/dadbattle-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week1/dadbattle-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		elseif song == 2 then
 			inst = love.audio.newSource("music/normal/week1/fresh-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week1/fresh-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		else
 			inst = love.audio.newSource("music/normal/week1/bopeebo-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week1/bopeebo-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		end
 
 		self:initUI()
@@ -120,12 +124,12 @@ return {
 		end
 
 		if health >= 80 then
-			if enemyIcon:getAnimName() == "daddy dearest" then
-				enemyIcon:animate("daddy dearest losing", false)
+			if enemyIcon:getAnimName() == player2 then
+				enemyIcon:animate(player2 .. " losing", false)
 			end
 		else
-			if enemyIcon:getAnimName() == "daddy dearest losing" then
-				enemyIcon:animate("daddy dearest", false)
+			if enemyIcon:getAnimName() == player2 .. " losing" then
+				enemyIcon:animate(player2, false)
 			end
 		end
 

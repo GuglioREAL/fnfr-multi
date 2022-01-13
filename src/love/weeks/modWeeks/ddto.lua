@@ -75,8 +75,6 @@ return {
 			boyfriend.sizeX = -1
 		end
 
-		enemyIcon:animate("daddy dearest", false)
-
 		self:load()
 	end,
 
@@ -186,16 +184,6 @@ return {
 
 	update = function(self, dt)
 		weeks:update(dt)
-
-		if health >= 80 then
-			if enemyIcon:getAnimName() == "daddy dearest" then
-				enemyIcon:animate("daddy dearest losing", false)
-			end
-		else
-			if enemyIcon:getAnimName() == "daddy dearest losing" then
-				enemyIcon:animate("daddy dearest", false)
-			end
-		end
 
 		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
 			if storyMode and song < 3 then

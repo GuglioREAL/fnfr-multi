@@ -80,7 +80,6 @@ return {
 		girlfriend.x, girlfriend.y = -200, 50
 
 
-		enemyIcon:animate("skid and pump", false)
 
 		self:load()
 	end,
@@ -92,8 +91,6 @@ return {
 			if player2 == "default" then
 				enemy = love.filesystem.load("sprites/week2/monster.lua")()
 			end
-
-			enemyIcon:animate("monster", false)
 
 			inst = love.audio.newSource("music/normal/week2/monster-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week2/monster-voices.ogg", "stream")
@@ -149,25 +146,13 @@ return {
 			end
 		end
 
-		if song == 3 then
-			if health >= 80 then
-				if enemyIcon:getAnimName() == "monster" then
-					enemyIcon:animate("monster losing", false)
-				end
-			else
-				if enemyIcon:getAnimName() == "monster losing" then
-					enemyIcon:animate("monster", false)
-				end
+		if health >= 80 then
+			if enemyIcon:getAnimName() == player2 then
+				enemyIcon:animate(player2 .. " losing", false)
 			end
 		else
-			if health >= 80 then
-				if enemyIcon:getAnimName() == "skid and pump" then
-					enemyIcon:animate("skid and pump losing", false)
-				end
-			else
-				if enemyIcon:getAnimName() == "skid and pump losing" then
-					enemyIcon:animate("skid and pump", false)
-				end
+			if enemyIcon:getAnimName() == player2 .. " losing" then
+				enemyIcon:animate(player2, false)
 			end
 		end
 
