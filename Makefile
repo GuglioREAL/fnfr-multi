@@ -100,13 +100,5 @@ switch: lovefile
 	@mkdir -p build/release
 	@rm -f build/release/funkin-rewritten-switch.zip
 	@cd build/switch; zip -9 -r ../release/funkin-rewritten-switch.zip .
-
-html5: # ehhhh might finish this later
-	@rm -rf build/html5
-	@mkdir -p build/html5
-
-	@love.js -t fnfr-multi -m 390531735 build/lovefile/funkin-rewritten.love build/html5
-	@cd build/html5; python -m http.server 8000
-	
 clean:
 	@rm -rf build
