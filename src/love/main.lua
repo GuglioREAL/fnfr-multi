@@ -125,8 +125,10 @@ function love.keypressed(key)
 		Gamestate.switch(debugMenu)
 	elseif key == "0" then
 		if volume ~= 0 then
-			love.audio.setVolume(0)
-		else
+			lastVolume = volume
+			volume = 0
+		elseif volume == 0 then
+			volume = lastVolume
 			love.audio.setVolume(volume)
 		end
 	elseif key == "-" then
