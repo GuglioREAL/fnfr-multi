@@ -85,6 +85,9 @@ function love.load()
 
 	weekNum = 1
 	songDifficulty = 2
+	volume = 1
+	score = 0
+	score2 = 0
 
 	spriteTimers = {
 		0, -- Girlfriend
@@ -120,6 +123,16 @@ function love.keypressed(key)
 		love.graphics.captureScreenshot("screenshots/" .. os.time() .. ".png")
 	elseif key == "7" then
 		Gamestate.switch(debugMenu)
+	elseif key == "0" then
+		if volume ~= 0 then
+			love.audio.setVolume(0)
+		else
+			love.audio.setVolume(volume)
+		end
+	elseif key == "-" then
+		volume = volume - 0.1
+	elseif key == "=" then
+		volume = volume + 0.1
 	else
 		Gamestate.keypressed(key)
 	end
@@ -133,6 +146,7 @@ function love.update(dt)
 	dt = math.min(dt, 1 / 30)
 
 	input:update()
+	love.audio.setVolume(volume)
 
 	if status.getNoResize() then
 		Gamestate.update(dt)
