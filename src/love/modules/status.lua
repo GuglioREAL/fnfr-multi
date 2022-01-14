@@ -51,6 +51,7 @@ return {
 			winningScore = "Enemy"
 		elseif score == score2 then
 			winningScore = "Tie"
+		end
 
 		if type == "detailed" then
 			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
@@ -63,9 +64,7 @@ return {
 			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
 			"\nVolume: " .. volume ..
 			"\nWinning (Health): " .. winningHealth ..
-			"\nWinning (Score): " .. winningScore ..
-			"\nhealth: " .. tostring(health)
-			
+			"\nWinning (Score): " .. winningScore 
 		else
 			debugStr = "FPS: " .. tostring(love.timer.getFPS())
 		end
