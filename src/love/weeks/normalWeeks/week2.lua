@@ -90,16 +90,23 @@ return {
 		if song == 3 then
 			if player2 == "default" then
 				enemy = love.filesystem.load("sprites/week2/monster.lua")()
+				player2 = "monster" 
 			end
 
 			inst = love.audio.newSource("music/normal/week2/monster-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week2/monster-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		elseif song == 2 then
 			inst = love.audio.newSource("music/normal/week2/south-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week2/south-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		else
 			inst = love.audio.newSource("music/normal/week2/spookeez-inst.ogg", "stream")
 			voices = love.audio.newSource("music/normal/week2/spookeez-voices.ogg", "stream")
+			enemyIcon:animate(player2, false)
+			boyfriendIcon:animate(player1, false)
 		end
 
 		self:initUI()
