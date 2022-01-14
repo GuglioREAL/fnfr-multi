@@ -132,7 +132,11 @@ function love.keypressed(key)
 			love.audio.setVolume(volume)
 		end
 	elseif key == "-" then
-		volume = volume - 0.1
+		if volume >= 1 and volume <= 2 then
+			volume = 0.1
+		else
+			volume = volume - 0.1
+		end
 	elseif key == "=" then
 		volume = volume + 0.1
 	else
