@@ -38,6 +38,19 @@ return {
 
 	getDebugStr = function(type)
 		local debugStr
+		if health > 50 then
+			winningHealth = "Boyfriend"
+		elseif health < 50 then
+			winningHealth = "Enemy"
+		elseif health == 50 then
+			winningHealth = "Tie"
+		end
+		if score > score2 then
+			winningScore = "Boyfriend"
+		elseif score < score2 then
+			winningScore = "Enemy"
+		elseif score == score2 then
+			winningScore = "Tie"
 
 		if type == "detailed" then
 			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
@@ -48,7 +61,11 @@ return {
 			"\ngraphics.getImageType(): " .. tostring(graphics.getImageType()) ..
 
 			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
+			"\nVolume: " .. volume ..
+			"\nWinning (Health): " .. winningHealth ..
+			"\nWinning (Score): " .. winningScore ..
 			"\nhealth: " .. tostring(health)
+			
 		else
 			debugStr = "FPS: " .. tostring(love.timer.getFPS())
 		end
